@@ -26,3 +26,18 @@
 *.exe
 *.out
 *.app
+
+#ignore all directories and files 
+*
+#but include this directories and files
+!libraries/*
+!libraries/CAN/*
+!libraries/GPS_GSM/*
+!libraries/GSM2/*
+!libraries/OBD/*
+!libraries/TinyGPSPlus-0.94b/*
+!obd_project/Visual Micro/*
+!obd_project/*
+!obd_project.cfg
+!obd_project.hts
+

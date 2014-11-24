@@ -1,0 +1,132 @@
+<HtermSequenceFile>
+    <ItemList>
+        <SequenceItem name="Get HW-Version">
+            <description></description>
+            <sequence value="h[56] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Get FW-Version">
+            <description></description>
+            <sequence value="h[76] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 10k">
+            <description></description>
+            <sequence value="h[53] h[30] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 20k">
+            <description></description>
+            <sequence value="h[53] h[31] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 50k">
+            <description></description>
+            <sequence value="h[53] h[32] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 100k">
+            <description></description>
+            <sequence value="h[53] h[33] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 125k">
+            <description></description>
+            <sequence value="h[53] h[34] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 250k">
+            <description></description>
+            <sequence value="h[53] h[35] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 500k">
+            <description></description>
+            <sequence value="h[53] h[36] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 800k">
+            <description></description>
+            <sequence value="h[53] h[37] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Baudrate 1M">
+            <description></description>
+            <sequence value="h[53] h[38] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Timestamping On">
+            <description></description>
+            <sequence value="h[5A] h[31] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Set Timestamping Off">
+            <description></description>
+            <sequence value="h[5A] h[30] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Open CAN channel">
+            <description></description>
+            <sequence value="h[4F] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Open CAN channel (listen-only)">
+            <description></description>
+            <sequence value="h[4C] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Open CAN channel (loopback)">
+            <description></description>
+            <sequence value="h[6C] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Close CAN channel">
+            <description></description>
+            <sequence value="h[43] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Get Errorflags">
+            <description></description>
+            <sequence value="h[46] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Example: Transmit standard frame id:0x123, data:0x45,0x67,0x89">
+            <description></description>
+            <sequence value="h[74] h[31] h[32] h[33] h[33] h[34] h[35] h[36] h[37] h[38] h[39] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="scan bus for standard ID&apos;s ">
+            <description></description>
+            <sequence value="h[62] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="enable debugging">
+            <description></description>
+            <sequence value="a[D] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="disable debugging">
+            <description></description>
+            <sequence value="a[d] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="enable GSM">
+            <description></description>
+            <sequence value="a[I] a[G] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="disable GSM">
+            <description></description>
+            <sequence value="a[i] a[G] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="enable GPS">
+            <description></description>
+            <sequence value="a[I] a[P] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="disable GPS">
+            <description></description>
+            <sequence value="a[i] a[P] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="enable CAN">
+            <description></description>
+            <sequence value="a[I] a[C] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="disable CAN">
+            <description></description>
+            <sequence value="a[i] a[C] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="set mask to 0x7FF">
+            <description></description>
+            <sequence value="a[m] a[0] a[0] a[0] a[0] a[0] a[7] a[F] a[F] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="set filter to 0x160">
+            <description></description>
+            <sequence value="a[M] a[0] a[0] a[0] a[0] a[0] a[1] a[6] a[0] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="set filter for RPM">
+            <description></description>
+            <sequence value="a[M] a[0] a[0] a[0] a[0] a[0] a[0] a[0] a[3] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="Query for RPM">
+            <description></description>
+            <sequence value="a[Q] a[0] a[0] a[0] a[0] a[0] a[0] a[0] a[3] h[0D]" />
+        </SequenceItem>
+    </ItemList>
+</HtermSequenceFile>
