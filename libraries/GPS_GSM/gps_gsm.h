@@ -13,8 +13,10 @@
 #ifndef GPS_GSM_H_
 #define GPS_GSM_H_
 
-void gsm_gps_setup();
-void gsm_gps_loop();
+void gsm_setup()
+void gps_setup()
+TinyGPSPlus getGPS_data()
+void sendGSM_data(String data)
 void connectSerialGsm();
 void connectInternet();
 int attachGPRS();
