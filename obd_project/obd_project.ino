@@ -60,8 +60,11 @@ void setup()
 
 	 //initialise CAN_BUS default on 500kBAD
 	 OBD.init(CAN_500KBPS);
-	 //gsm_gps_setup();
-	 //TODO add GPS init
+	 gsm_setup();
+	 int gsm_enabled=1;
+	 gps_setup();
+	 int gps_enabled=1;
+	 
 	
 }
 
@@ -78,6 +81,15 @@ void loop()
 {
 	OBD.processing();
 	//TODO Kwinten, voeg hier je GPS en GPS loop toe maar voorzie eerst enabale en disable state. Zie andere todo's verderop
+	if (gps_enabled==1)
+	{
+	TinyGPSPlus getGPS_data();
+	}
+	
+	if (gsm_enabled==1)
+	{
+	sendGSM_data("test");
+	}
 	
 	// Read serial command
 	if (Serial.available() > 0)
@@ -284,12 +296,16 @@ void handleSerialCmd(char* command)
 			switch (serialCmd[1])
 			{
 				case GPS_INTERFACE:
+				gps_setup();
 					//TODO Kwinten voeg hier de code toe om de gps te initialiseren en zijn loop code te activeren
                                         Serial.println("GPS enabled");
+                                        gps_enabled=1;
 				break;
 				case GSM_INTERFACE:
+				gsm_setup()
 					//TODO Kwinten voeg hier de code toe om de gsm te initialiseren en zijn loop code te activeren
                                         Serial.println("GSM enabled");
+                                        gsm_enabled=1;
 				break;
 				case CAN_INTERFACE:
 					OBD.setObdProcessingtate(STATE_CONFIG);
@@ -301,10 +317,14 @@ void handleSerialCmd(char* command)
 			switch (serialCmd[1])
 			{
 				case GPS_INTERFACE:
+				Serial2.end();
+				gps_enabled=0;
 				      //TODO Kwinten voeg hier de code toe om de gps en zijn loop code te deactiveren
                                        Serial.println("GPS disabled");
 				break;
 				case GSM_INTERFACE:
+				//gsm.end(); //ben nog niet zeker of dit werkt
+				gsm_enabled=0;
 					//TODO Kwinten voeg hier de code toe om de gsm  en zijn loop code te deactiveren
                                         Serial.println("GSM disabled");
 				break;
