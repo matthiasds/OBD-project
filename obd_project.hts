@@ -112,21 +112,39 @@
             <description></description>
             <sequence value="a[i] a[C] h[0D]" />
         </SequenceItem>
-        <SequenceItem name="set mask to 0x7FF">
+		 <SequenceItem name="Query for RPM">
+            <description></description>
+            <sequence value="a[Q] a[0] a[0] a[0] a[0] a[0] a[0] a[0] a[3] h[0D]" />
+        </SequenceItem>
+        <SequenceItem name="set Standard mask to 0x7FF">
             <description></description>
             <sequence value="a[m] a[0] a[0] a[0] a[0] a[0] a[7] a[F] a[F] h[0D]" />
+        </SequenceItem>
+		<SequenceItem name="set Extended mask to 0x1FFFFFFF">
+            <description></description>
+            <sequence value="a[m] a[1] a[F] a[F] a[F] a[F] a[F] a[F] a[F] h[0D]" />
         </SequenceItem>
         <SequenceItem name="set filter to 0x160">
             <description></description>
             <sequence value="a[M] a[0] a[0] a[0] a[0] a[0] a[1] a[6] a[0] h[0D]" />
         </SequenceItem>
+		<SequenceItem name="set filter to RPM Volvo V70 MMGM 0x0040001E">
+            <description></description>
+            <sequence value="a[M] a[0] a[0] a[4] a[0] a[0] a[0] a[1] a[E] h[0D]" />
+        </SequenceItem>
+		<SequenceItem name="set filter to 0x00200066">
+            <description></description>
+            <sequence value="a[M] a[0] a[0] a[2] a[0] a[0] a[0] a[6] a[6] h[0D]" />
+        </SequenceItem>
+		<SequenceItem name="set filter to 0x0020003A">
+            <description></description>
+            <sequence value="a[M] a[0] a[0] a[2] a[0] a[0] a[0] a[3] a[A] h[0D]" />
+        </SequenceItem>
         <SequenceItem name="set filter for RPM">
             <description></description>
             <sequence value="a[M] a[0] a[0] a[0] a[0] a[0] a[0] a[0] a[3] h[0D]" />
         </SequenceItem>
-        <SequenceItem name="Query for RPM">
-            <description></description>
-            <sequence value="a[Q] a[0] a[0] a[0] a[0] a[0] a[0] a[0] a[3] h[0D]" />
-        </SequenceItem>
+       
+		
     </ItemList>
 </HtermSequenceFile>

@@ -332,6 +332,46 @@ void OBD::setStandardFilter(uint32_t *filters, uint8_t filterNr)
 	}
 }
 
+
+/*=======================================================================================================================
+ Name: setExtendedMask
+ ------------------------------------------------------------------------------------------------------------------------
+ Purpose: 	function to set a maks for Standard CAN frames
+ Param:		masks	array containing all the masks to be set
+			maskNr	number of masks to be set
+ Returns:	n/a
+=======================================================================================================================*/
+void OBD::setExtendedMasks(uint32_t *masks, uint8_t maskNr)
+{
+	if (maskNr<2)
+	{
+		for (uint8_t i=0; i < maskNr; i++)
+		{
+			CAN.MCP_CAN::init_Mask(i, 1, masks[i]);
+		}
+	}
+	
+}
+
+/*=======================================================================================================================
+ Name: setExtendedFilter
+ ------------------------------------------------------------------------------------------------------------------------
+ Purpose: 	function to set a extended filter for Standard CAN frames
+ Param:		filters		array containing all the filters to be set
+			filterNr	number of filters to be set
+ Returns:	n/a
+=======================================================================================================================*/
+void OBD::setExtendedFilter(uint32_t *filters, uint8_t filterNr)
+{
+	if (filterNr<6)
+	{
+		for (uint8_t i=0; i < filterNr; i++)
+		{
+			CAN.MCP_CAN::init_Filt(i, 1, filters[i]);
+		}
+	}
+}
+
 /*=======================================================================================================================
  Name: enableTimeStamping
  ------------------------------------------------------------------------------------------------------------------------
@@ -492,7 +532,7 @@ void OBD::initContinuousQueryStandard()
     /*
      * set all filters to 00
      */
-    CAN.init_Filt(0, 0, pidToQuery);                    // there are 6 filter in mcp2515
+    CAN.init_Filt(0, 0, ID_RESPONSE);                    // there are 6 filter in mcp2515
     CAN.init_Filt(1, 0, 0x00);                          // there are 6 filter in mcp2515
     
     CAN.init_Filt(2, 0, 0x00);                          // there are 6 filter in mcp2515
@@ -513,7 +553,7 @@ void OBD::initContinuousQueryStandard()
 void OBD::obdRequest(uint8_t PID)
 {
 	transmitMessage.id = ID_REQUEST;
-	transmitMessage.rtr = 0;
+	transmitMessage.rtr = 1;
 	transmitMessage.length = 8;
 	transmitMessage.data[0]= 0x02;
 	transmitMessage.data[1]= 0x01;

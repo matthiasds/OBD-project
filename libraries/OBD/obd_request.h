@@ -62,7 +62,9 @@ class OBD
 	void canControllerSetListenOnlyMode();
 	void canControllerSetConfigurationMode();
 	void setStandardMasks(uint32_t *masks, uint8_t maskNr);
+	void setExtendedMasks(uint32_t *masks, uint8_t maskNr);
 	void setStandardFilter(uint32_t *filters, uint8_t filterNr);
+	void setExtendedFilter(uint32_t *filters, uint8_t filterNr);
 	void enableTimeStamping();
 	void disableTimeStamping();
 	obdProcessingtates getObdProcessingtate();

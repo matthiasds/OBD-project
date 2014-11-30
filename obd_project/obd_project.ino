@@ -319,11 +319,22 @@ void handleSerialCmd(char* command)
 			uint32_t mask;
 			if (parseHex(&serialCmd[1], 8, &mask))
 			{
-				OBD.setStandardMasks(&mask, 1);
-				if(mainDebug==1) {
-				Serial.print("m = set Mask: ");Serial.print(mask, HEX);
-				}
-				Serial.println("");
+                                if (mask > 0x3FF)
+                                {
+                                  OBD.setExtendedMasks(&mask, 1);
+                                  if(mainDebug==1) {
+    				  Serial.print("m = set Extended Mask: ");Serial.print(mask, HEX);
+    				  }
+    				  Serial.println("");
+                                }
+                                else
+                                {
+				  OBD.setStandardMasks(&mask, 1);
+    				  if(mainDebug==1) {
+    				  Serial.print("m = set Standard Mask: ");Serial.print(mask, HEX);
+    				  }
+    				  Serial.println("");
+                                }
 			}
 		break;
 			
@@ -331,11 +342,22 @@ void handleSerialCmd(char* command)
 		uint32_t filter;
 		if (parseHex(&serialCmd[1], 8, &filter)) 
 		{
+                        if (mask > 0x3FF)
+                                {
+                                  OBD.setExtendedFilter(&filter, 1);
+                                  if(mainDebug==1) {
+    				  Serial.print("M = set Extended Filter: ");Serial.print(filter, HEX);
+    				  }
+    				  Serial.println("");
+                                }
+                                else
+                                {
 			OBD.setStandardFilter(&filter, 1);
 			if(mainDebug==1) {
-			Serial.print("M = set Filter: "); Serial.print(filter, HEX);
+			Serial.print("M = set Standard Filter: "); Serial.print(filter, HEX);
 			}
 			Serial.println("");
+                    }
 		}
 		break;
 		case SCAN_STANDARD_BUS_IDS:

@@ -24,7 +24,7 @@
 
 #define spi_readwrite SPI.transfer
 #define spi_read() spi_readwrite(0x00)
-//#define DEBUGMODE 1
+#define DEBUGMODE 1
 
 /*********************************************************************************************************
 ** Function name:           mcp2515_reset
