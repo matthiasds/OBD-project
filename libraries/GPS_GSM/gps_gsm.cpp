@@ -1,8 +1,6 @@
 #include "SIM900.h"
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>	
-#include <gps_gsm.h>	
-
 
 TinyGPSPlus gps;
 String ReceivedData;
@@ -17,7 +15,7 @@ int num_char;
 public functions
  ----------------------------------------------------------------------------------------------------------------------*/
  
-void gsm_gps_setup()
+void gsm_setup()
 {
 //GSM settings
 	//Serial.begin(9600); 									//USB  serial communication
@@ -34,7 +32,10 @@ void gsm_gps_setup()
 	Serial.println(gsm.WaitResp(10000, 200, "OK"));			//// wait for response
 	delay(500);
 //end gsm settings
-//GPS settings
+}
+ void gps_setup()
+ {
+ //GPS settings
 	Serial2.begin(9600);									//start GPS communication
 	SendToGPS("PSRF103,00,00,00,01"); 						// Stop GGA (fixe rate=0=off)
     SendToGPS("PSRF103,01,00,00,01"); 						// Stop GLL (fixe rate=0=off) 
@@ -43,30 +44,37 @@ void gsm_gps_setup()
     SendToGPS("PSRF103,04,00,00,01"); 						// Stop RMC (fixe rate=0=off)
     SendToGPS("PSRF103,05,00,00,01"); 						// Stop VTG (fixe rate=0=off)
 //end gps settings	
-
 }
- 
-void gsm_gps_loop()
+
+TinyGPSPlus getGPS_data()
 {
-//get GPS DATA
-		delay(5000);
+  //get GPS DATA
+		//delay(5000);
 		Serial2.flush();
 		SendToGPS("PSRF103,00,01,00,01"); // activate GGA rate=1
 		while(!Serial2.available()); // Wait for data
 		getData();
-		Serial.print(gps.location.lat(), 6);	//latitude
-		Serial.println(gps.location.lng(), 6);	//longitude
+		
 		SendToGPS("PSRF103,00,00,00,01");
+return gps;
 //end get GPS DATA
-
-//send data
-	gsm.SimpleWriteln("AT+HTTPPARA=\"URL\",\"namking.be/project/index.php?name=test\"");
+  }
+  
+  void sendGSM_data(String data)
+  {
+    //send data
+    unsigned int len = 100;
+    char msg[60],buf[100];
+    data.toCharArray(buf, len);
+  //gsm.SimpleWriteln("AT+HTTPPARA=\"URL\",\"namking.be/project/index.php?name=test\"");
+        gsm.SimpleWriteln(buf);
 	Serial.println(gsm.WaitResp(10000, 200, "OK"));
 	gsm.SimpleWriteln("AT+HTTPACTION=0");
 	Serial.println(gsm.WaitResp(10000, 200, "OK")); 
 	Serial.println(gsm.WaitResp(10000, 200, "ERROR"));
 //end send
-};
+    }
+	
  
  void connectSerialGsm()
  {
